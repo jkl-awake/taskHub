@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://124.223.0.244:3190/app_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: app_user
+    password: App@123456
+  data:
+    redis:
+      host: 124.223.0.244
+      port: 6379
+      password: 123456
+      database: 1
