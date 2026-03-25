@@ -1,4 +1,4 @@
-package com.example.taskhub.service.Impl;
+package com.example.taskhub.security.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -7,7 +7,6 @@ import com.example.taskhub.common.exception.BusinessException;
 import com.example.taskhub.converter.auth.AuthConverter;
 import com.example.taskhub.model.bo.AuthLoginBo;
 import com.example.taskhub.model.bo.AuthRegisterBo;
-import com.example.taskhub.model.dto.AuthLoginDto;
 import com.example.taskhub.model.po.SysRolePo;
 import com.example.taskhub.model.po.SysUserPo;
 import com.example.taskhub.model.po.SysUserRolePo;
@@ -31,7 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 

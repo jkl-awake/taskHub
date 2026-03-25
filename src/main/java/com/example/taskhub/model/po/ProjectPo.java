@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -15,6 +16,20 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @TableName("project")
 public class ProjectPo implements Serializable {
+
+    public static ProjectPo defaultProjectPo(Long ownerId,String projectName,String description){
+        LocalDateTime now = LocalDateTime.now();
+        return ProjectPo.builder()
+                .projectCode(UUID.randomUUID().toString())
+                .projectName(projectName)
+                .description(description)
+                .ownerId(ownerId)
+                .status(1)
+                .createdAt(now)
+                .updatedAt(now)
+                .deleted(false)
+                .build();
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +46,7 @@ public class ProjectPo implements Serializable {
     private String description;
 
     @TableField("status")
-    private String status;
+    private int status;
 
     @TableField("owner_id")
     private Long ownerId;
@@ -50,5 +65,5 @@ public class ProjectPo implements Serializable {
 
     @TableLogic
     @TableField("deleted")
-    private Integer deleted;
+    private boolean deleted;
 }
