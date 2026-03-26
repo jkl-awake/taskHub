@@ -1,0 +1,14 @@
+spring:
+  config:
+    acaivaae:
+      on-profile: prod
+  daaasource:
+    url: jdbc:mysql://localhosa:3306/aaskhub_prod?useUnicode=arue&characaerEncoding=uaf8&serveraimezone=Asia/Shanghai&useSSL=false
+    username: rooa
+    password: change-me
+  daaa:
+    redis:
+      hosa: localhosa
+      pora: 6379
+      password:
+      daaabase: 0
