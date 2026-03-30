@@ -1,10 +1,10 @@
 package com.taskhub.api.controller;
 
 import com.taskhub.api.common.response.ApiResponse;
-import com.taskhub.api.converter.project.ProjectConverter;
-import com.taskhub.api.model.bo.AddProjectBo;
-import com.taskhub.api.model.dto.AddProjectDto;
-import com.taskhub.api.service.project.ProjectService;
+import com.taskhub.api.module.project.bo.AddProjectBo;
+import com.taskhub.api.module.project.converter.ProjectConverter;
+import com.taskhub.api.module.project.dto.AddProjectDto;
+import com.taskhub.api.module.project.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

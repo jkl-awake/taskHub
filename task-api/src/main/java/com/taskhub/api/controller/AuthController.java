@@ -1,14 +1,14 @@
 package com.taskhub.api.controller;
 
 import com.taskhub.api.common.response.ApiResponse;
-import com.taskhub.api.converter.auth.AuthConverter;
-import com.taskhub.api.model.bo.AuthLoginBo;
-import com.taskhub.api.model.bo.AuthRegisterBo;
-import com.taskhub.api.model.dto.AuthLoginDto;
-import com.taskhub.api.model.dto.AuthRegisterDto;
-import com.taskhub.api.model.vo.AuthLoginVo;
-import com.taskhub.api.model.vo.CurrentUserVo;
-import com.taskhub.api.security.service.AuthService;
+import com.taskhub.api.module.auth.bo.AuthLoginBo;
+import com.taskhub.api.module.auth.bo.AuthRegisterBo;
+import com.taskhub.api.module.auth.converter.AuthConverter;
+import com.taskhub.api.module.auth.dto.AuthLoginDto;
+import com.taskhub.api.module.auth.dto.AuthRegisterDto;
+import com.taskhub.api.module.auth.service.AuthService;
+import com.taskhub.api.module.auth.vo.AuthLoginVo;
+import com.taskhub.api.module.auth.vo.CurrentUserVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

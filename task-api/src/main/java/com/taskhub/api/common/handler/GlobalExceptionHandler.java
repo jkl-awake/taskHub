@@ -1,4 +1,4 @@
-package api.common.handler;
+package com.taskhub.api.common.handler;
 
 import com.taskhub.api.common.exception.BusinessException;
 import com.taskhub.api.common.response.ApiResponse;

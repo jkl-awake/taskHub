@@ -2,11 +2,11 @@ package com.taskhub.api.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.taskhub.api.common.response.ApiResponse;
-import com.taskhub.api.converter.user.UserConverter;
-import com.taskhub.api.model.bo.UserInfoQueryBo;
-import com.taskhub.api.model.dto.UserInfoQueryDto;
-import com.taskhub.api.model.vo.UserInfoQueryVo;
-import com.taskhub.api.service.user.UserService;
+import com.taskhub.api.module.user.bo.UserInfoQueryBo;
+import com.taskhub.api.module.user.converter.UserConverter;
+import com.taskhub.api.module.user.dto.UserInfoQueryDto;
+import com.taskhub.api.module.user.service.UserService;
+import com.taskhub.api.module.user.vo.UserInfoQueryVo;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
