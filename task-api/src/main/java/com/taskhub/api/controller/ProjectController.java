@@ -1,10 +1,14 @@
 package com.taskhub.api.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.taskhub.api.common.response.ApiResponse;
 import com.taskhub.api.module.project.bo.AddProjectBo;
+import com.taskhub.api.module.project.bo.ProjectQueryBo;
 import com.taskhub.api.module.project.converter.ProjectConverter;
 import com.taskhub.api.module.project.dto.AddProjectDto;
+import com.taskhub.api.module.project.dto.ProjectQueryDto;
 import com.taskhub.api.module.project.service.ProjectService;
+import com.taskhub.api.module.project.vo.ProjectQueryVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -29,5 +33,13 @@ public class ProjectController {
         AddProjectBo addProjectBo = projectConverter.AddProjectDtoToBo(addProjectDto);
         int rows = projectService.addProject(addProjectBo);
         return rows > 0 ? ApiResponse.success(rows) : ApiResponse.fail("新增项目失败");
+    }
+
+    @PostMapping("/listProjects")
+    @Operation(summary = "查询项目列表")
+    public ApiResponse<Page<ProjectQueryVo>> listProjects(@RequestBody ProjectQueryDto projectQueryDto){
+        ProjectQueryBo projectQueryBo = projectConverter.projectQueryDtoToBo(projectQueryDto);
+        Page<ProjectQueryVo> page = projectService.listProjects(projectQueryBo);
+        return page != null ? ApiResponse.success(page) : ApiResponse.fail("查询项目列表失败");
     }
 }

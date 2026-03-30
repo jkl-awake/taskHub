@@ -5,7 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan({
-        "com.taskhub.auto.mapper"
+        "com.taskhub.auto.mapper",
+        "com.taskhub.api.module.project.mapper"
 })
 @SpringBootApplication
 public class TaskApiApplication {
