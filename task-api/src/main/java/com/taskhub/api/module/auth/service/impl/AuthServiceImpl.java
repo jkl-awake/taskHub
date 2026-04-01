@@ -1,5 +1,6 @@
 package com.taskhub.api.module.auth.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.taskhub.api.common.constant.SecurityConstants;
 import com.taskhub.api.common.exception.BusinessException;
@@ -29,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,17 +54,19 @@ public class AuthServiceImpl implements AuthService {
         validateRegister(authRegisterBo);
         LocalDateTime now = LocalDateTime.now();
 
-        SysUserDo sysUserDo = userInit(authRegisterBo,passwordEncoder,now);
+        SysUserDo sysUserDo = userInit(authRegisterBo, passwordEncoder, now);
         userService.save(sysUserDo);
 
-        SysRoleDo defaultRole = getOrCreateDefaultRole();
+        List<SysRoleDo> roleDos = new ArrayList<>();
+        SysRoleDo defaultRole = getOrCreateDefaultRole(authRegisterBo);
         userRoleService.save(SysUserRoleDo.builder()
                 .userId(sysUserDo.getId())
                 .roleId(defaultRole.getId())
                 .createdAt(now)
                 .build());
+        roleDos.add(defaultRole);
 
-        return authConverter.sysUserPoToCurrentUserVo(sysUserDo, List.of(defaultRole));
+        return authConverter.sysUserPoToCurrentUserVo(sysUserDo, roleDos);
     }
 
     @Override
@@ -126,25 +130,31 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
-    private SysRoleDo getOrCreateDefaultRole() {
-        SysRoleDo defaultRole = roleService.getOne(
-                Wrappers.<SysRoleDo>lambdaQuery().eq(SysRoleDo::getRoleCode, SecurityConstants.DEFAULT_ROLE_CODE)
+    private SysRoleDo getOrCreateDefaultRole(AuthRegisterBo authRegisterBo) {
+        String roleCode = authRegisterBo.getRoleCode();
+        if(ObjectUtil.isEmpty(roleCode)){
+            roleCode = SecurityConstants.DEFAULT_ROLE_CODE;
+        }
+
+        SysRoleDo roleDo = roleService.getOne(
+                Wrappers.<SysRoleDo>lambdaQuery().eq(SysRoleDo::getRoleCode, roleCode)
+                        .eq(SysRoleDo :: getDeleted,0)
         );
-        if (defaultRole != null) {
-            return defaultRole;
+        if (roleDo != null) {
+            return roleDo;
         }
 
         LocalDateTime now = LocalDateTime.now();
-        defaultRole = SysRoleDo.builder()
+        roleDo = SysRoleDo.builder()
                 .roleCode(SecurityConstants.DEFAULT_ROLE_CODE)
-                .roleName("默认角色")
-                .remark("系统默认角色")
+                .roleName("管理员")
+                .remark("系统管理员")
                 .createdAt(now)
                 .updatedAt(now)
                 .deleted(0)
                 .build();
-        roleService.save(defaultRole);
-        return defaultRole;
+        roleService.save(roleDo);
+        return roleDo;
     }
 
     private List<String> loadRoleCodesByUserId(Long userId) {

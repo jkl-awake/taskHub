@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  * 角色表
  *
  * @author Codex
- * @since 2026-03-26
+ * @since 2026-03-31
  */
 @Data
 @Builder

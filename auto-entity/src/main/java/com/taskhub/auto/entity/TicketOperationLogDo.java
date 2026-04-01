@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
- * 用户角色关联表
+ * 工单操作日志表
  *
  * @author Codex
  * @since 2026-03-31
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("sys_user_role")
-public class SysUserRoleDo implements Serializable {
+@TableName("ticket_operation_log")
+public class TicketOperationLogDo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,16 +33,28 @@ public class SysUserRoleDo implements Serializable {
     private Long id;
 
     /**
-     * 用户ID
+     * 工单ID
      */
-    @TableField("user_id")
-    private Long userId;
+    @TableField("ticket_id")
+    private Long ticketId;
 
     /**
-     * 角色ID
+     * 操作人ID
      */
-    @TableField("role_id")
-    private Long roleId;
+    @TableField("operator_id")
+    private Long operatorId;
+
+    /**
+     * 操作类型
+     */
+    @TableField("operation_type")
+    private String operationType;
+
+    /**
+     * 操作描述
+     */
+    @TableField("operation_desc")
+    private String operationDesc;
 
     /**
      * 创建时间

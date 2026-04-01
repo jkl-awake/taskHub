@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
- * 系统用户表
+ * 工单评论表
  *
  * @author Codex
  * @since 2026-03-31
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("sys_user")
-public class SysUserDo implements Serializable {
+@TableName("ticket_comment")
+public class TicketCommentDo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,46 +33,22 @@ public class SysUserDo implements Serializable {
     private Long id;
 
     /**
-     * 用户名
+     * 工单ID
      */
-    @TableField("user_name")
-    private String userName;
+    @TableField("ticket_id")
+    private Long ticketId;
 
     /**
-     * 密码(加密后)
+     * 评论人ID
      */
-    @TableField("password")
-    private String password;
+    @TableField("user_id")
+    private Long userId;
 
     /**
-     * 昵称
+     * 评论内容
      */
-    @TableField("nick_name")
-    private String nickName;
-
-    /**
-     * 邮箱
-     */
-    @TableField("email")
-    private String email;
-
-    /**
-     * 手机号
-     */
-    @TableField("phone")
-    private String phone;
-
-    /**
-     * 头像地址
-     */
-    @TableField("avatar_url")
-    private String avatarUrl;
-
-    /**
-     * 状态: 1启用 0禁用
-     */
-    @TableField("status")
-    private int status;
+    @TableField("content")
+    private String content;
 
     /**
      * 创建时间
@@ -87,19 +63,7 @@ public class SysUserDo implements Serializable {
     private LocalDateTime updatedAt;
 
     /**
-     * 创建人
-     */
-    @TableField("created_by")
-    private Long createdBy;
-
-    /**
-     * 更新人
-     */
-    @TableField("updated_by")
-    private Long updatedBy;
-
-    /**
-     * 逻辑删除: 0否 1是
+     * 逻辑删除
      */
     @TableField("deleted")
     private int deleted;

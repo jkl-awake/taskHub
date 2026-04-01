@@ -11,10 +11,18 @@
         p.owner_id 'ownerId',
         su.nick_name 'ownerName',
         p.created_at 'createdAt',
-        p.updated_at 'updatedAt'
+        p.updated_at 'updatedAt',
+        pm_agg.memberIds as members
         FROM
         project p
         left join sys_user su on p.owner_id = su.id and su.deleted = 0
+        left join (
+        select
+        pm.project_id,
+        group_concat(distinct pm.user_id) 'memberIds'
+        from project_member pm
+        group by pm.project_id
+        )pm_agg on pm_agg.project_id = p.id
         WHERE p.deleted = 0
         <if test="projectQueryQo.projectName != null and projectQueryQo.projectName != ''">
             AND p.project_name like CONCAT('%', #{projectQueryQo.projectName}, '%')

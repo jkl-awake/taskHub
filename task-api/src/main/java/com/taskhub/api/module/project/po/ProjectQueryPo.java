@@ -1,16 +1,14 @@
-package com.taskhub.api.module.project.vo;
+package com.taskhub.api.module.project.po;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProjectQueryVo {
+public class ProjectQueryPo {
 
     @Schema(description = "项目id")
     private Long id;

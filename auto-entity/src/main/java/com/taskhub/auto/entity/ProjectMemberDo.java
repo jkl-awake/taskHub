@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
- * 用户角色关联表
+ * 项目成员表
  *
  * @author Codex
  * @since 2026-03-31
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("sys_user_role")
-public class SysUserRoleDo implements Serializable {
+@TableName("project_member")
+public class ProjectMemberDo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,20 +33,26 @@ public class SysUserRoleDo implements Serializable {
     private Long id;
 
     /**
+     * 项目ID
+     */
+    @TableField("project_id")
+    private Long projectId;
+
+    /**
      * 用户ID
      */
     @TableField("user_id")
     private Long userId;
 
     /**
-     * 角色ID
+     * 成员角色: OWNER/MANAGER/MEMBER
      */
-    @TableField("role_id")
-    private Long roleId;
+    @TableField("member_role")
+    private String memberRole;
 
     /**
-     * 创建时间
+     * 加入时间
      */
-    @TableField("created_at")
-    private LocalDateTime createdAt;
+    @TableField("joined_at")
+    private LocalDateTime joinedAt;
 }

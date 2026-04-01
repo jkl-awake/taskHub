@@ -20,7 +20,7 @@ public class CodeGenerator {
         String url = readConfig("generator.db.url", "GENERATOR_DB_URL", "jdbc:mysql://124.223.0.244:3190/app_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false");
         String username = readConfig("generator.db.username", "GENERATOR_DB_USERNAME", "app_user");
         String password = readConfig("generator.db.password", "GENERATOR_DB_PASSWORD", "App@123456");
-        String tables = readConfig("generator.tables", "GENERATOR_TABLES", "sys_user,sys_role,sys_user_role,project");
+        String tables = readConfig("generator.tables", "GENERATOR_TABLES", "sys_user,sys_role,sys_user_role,project,project_member,ticket,ticket_comment,ticket_operation_log");
         String tablePrefixes = readConfig("generator.table-prefixes", "GENERATOR_TABLE_PREFIXES", "t_,tb_");
 
         Path moduleRoot = Path.of(System.getProperty("user.dir")).resolve("auto-entity");

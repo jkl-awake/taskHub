@@ -2,16 +2,16 @@ package com.taskhub.api.module.project.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddProjectDto {
+@ToString
+public class AddProjectDto implements Serializable {
 
     @Schema(description = "用户ID", example = "1")
     private Long userId;

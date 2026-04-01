@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author Codex
- * @since 2026-03-26
+ * @since 2026-03-31
  */
 @Mapper
 public interface SysUserRoleMapper extends BaseMapper<SysUserRoleDo> {

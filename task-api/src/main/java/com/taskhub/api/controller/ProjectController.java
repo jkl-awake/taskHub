@@ -3,9 +3,11 @@ package com.taskhub.api.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.taskhub.api.common.response.ApiResponse;
 import com.taskhub.api.module.project.bo.AddProjectBo;
+import com.taskhub.api.module.project.bo.AddProjectMemberBo;
 import com.taskhub.api.module.project.bo.ProjectQueryBo;
 import com.taskhub.api.module.project.converter.ProjectConverter;
 import com.taskhub.api.module.project.dto.AddProjectDto;
+import com.taskhub.api.module.project.dto.AddProjectMemberDto;
 import com.taskhub.api.module.project.dto.ProjectQueryDto;
 import com.taskhub.api.module.project.service.ProjectService;
 import com.taskhub.api.module.project.vo.ProjectQueryVo;
@@ -41,5 +43,16 @@ public class ProjectController {
         ProjectQueryBo projectQueryBo = projectConverter.projectQueryDtoToBo(projectQueryDto);
         Page<ProjectQueryVo> page = projectService.listProjects(projectQueryBo);
         return page != null ? ApiResponse.success(page) : ApiResponse.fail("查询项目列表失败");
+    }
+
+    /*
+    * 添加项目成员
+    * */
+    @PostMapping("/addProjectMember")
+    @Operation(summary = "添加项目成员")
+    public ApiResponse<Integer> addProjectMember(@Valid @RequestBody AddProjectMemberDto addProjectMemberDto){
+        AddProjectMemberBo addProjectMemberBo = projectConverter.addProjectMemberDtoToBo(addProjectMemberDto);
+        Integer rows = projectService.addProjectMember(addProjectMemberBo);
+        return (rows == null || rows != 1) ? ApiResponse.fail("新增项目成员失败") : ApiResponse.success(rows);
     }
 }

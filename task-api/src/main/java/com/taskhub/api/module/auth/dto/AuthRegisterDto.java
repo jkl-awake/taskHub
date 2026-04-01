@@ -26,4 +26,7 @@ public class AuthRegisterDto {
     @Email(message = "邮箱格式不正确")
     @Schema(description = "邮箱", example = "zhangsan@example.com")
     private String email;
+
+    @Schema(description = "角色code")
+    private String roleCode;
 }

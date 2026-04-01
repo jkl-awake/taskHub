@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
- * 系统用户表
+ * 工单表
  *
  * @author Codex
  * @since 2026-03-31
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("sys_user")
-public class SysUserDo implements Serializable {
+@TableName("ticket")
+public class TicketDo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,46 +33,58 @@ public class SysUserDo implements Serializable {
     private Long id;
 
     /**
-     * 用户名
+     * 工单编号
      */
-    @TableField("user_name")
-    private String userName;
+    @TableField("ticket_no")
+    private String ticketNo;
 
     /**
-     * 密码(加密后)
+     * 工单标题
      */
-    @TableField("password")
-    private String password;
+    @TableField("title")
+    private String title;
 
     /**
-     * 昵称
+     * 工单描述
      */
-    @TableField("nick_name")
-    private String nickName;
+    @TableField("description")
+    private String description;
 
     /**
-     * 邮箱
+     * 所属项目ID
      */
-    @TableField("email")
-    private String email;
+    @TableField("project_id")
+    private Long projectId;
 
     /**
-     * 手机号
+     * 提交人ID
      */
-    @TableField("phone")
-    private String phone;
+    @TableField("reporter_id")
+    private Long reporterId;
 
     /**
-     * 头像地址
+     * 处理人ID
      */
-    @TableField("avatar_url")
-    private String avatarUrl;
+    @TableField("assignee_id")
+    private Long assigneeId;
 
     /**
-     * 状态: 1启用 0禁用
+     * 状态: TODO/IN_PROGRESS/DONE/CLOSED
      */
     @TableField("status")
-    private int status;
+    private String status;
+
+    /**
+     * 优先级: LOW/MEDIUM/HIGH/URGENT
+     */
+    @TableField("priority")
+    private String priority;
+
+    /**
+     * 截止时间
+     */
+    @TableField("deadline")
+    private LocalDateTime deadline;
 
     /**
      * 创建时间
@@ -99,7 +111,7 @@ public class SysUserDo implements Serializable {
     private Long updatedBy;
 
     /**
-     * 逻辑删除: 0否 1是
+     * 逻辑删除
      */
     @TableField("deleted")
     private int deleted;
